@@ -1,1 +1,0 @@
-//array of _id values referencing the user model (self-reference)
