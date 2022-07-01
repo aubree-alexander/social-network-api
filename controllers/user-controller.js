@@ -35,6 +35,48 @@ const userController = {
             res.status(500).json(err);
           });
       },
+
+      //update user 
+      updateUser(req, res) {
+        User.findOneAndUpdate({_id: req.params.userId}, {$set: req.body}, {new: true, runValidators: true})
+          .then(userData => res.status(200).json(userData))
+          .catch((err) => {
+            console.log(err);
+            res.status(500).json(err);
+          });
+      },
+
+      //delete user
+      deleteUser(req, res) {
+        User.findOneAndDelete({_id: req.params.userId})
+          .then(userData => res.status(200).json(userData))
+            .catch((err) => {
+              console.log(err);
+              res.status(500).json(err);
+            });
+      },
+
+
+      //add friend
+      addFriend(req, res) {
+        User.findOneAndUpdate({_id: req.params.userId}, {$push: {friends: req.params.friendId}}, {new: true})
+          .then(userData => res.status(200).json(userData))
+              .catch((err) => {
+                console.log(err);
+                res.status(500).json(err);
+              });
+      },
+
+      //delete friend
+      deleteFriend(req, res) {
+        //need to do UPDATE vs DELETE because otherwise you're implying you're deleting the user itself not the friend
+        User.findOneAndUpdate({_id: req.params.userId}, {$pull: {friends: req.params.friendId}}, {new: true})
+        .then(userData => res.status(200).json(userData))
+              .catch((err) => {
+                console.log(err);
+                res.status(500).json(err);
+              });
+      }
 }
 
 
