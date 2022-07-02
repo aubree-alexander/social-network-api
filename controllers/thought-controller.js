@@ -66,7 +66,7 @@ const thoughtController = {
 
     //delete reaction
     deleteReaction(req, res) {
-        Thought.findOneAndUpdate({_id: req.params.thoughtId}, {$pull: {reactions: req.params.thoughtId}}, {new: true})
+        Thought.findOneAndUpdate({_id: req.params.thoughtId}, {$pull: {reactions: req.params.reactionId}}, {new: true})
         .then(thoughtData => res.status(200).json(thoughtData))
               .catch((err) => {
                 console.log(err);
@@ -76,6 +76,9 @@ const thoughtController = {
 }
 
 module.exports = thoughtController
+
+
+
 
 
 
