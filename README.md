@@ -31,10 +31,7 @@ THEN I am able to successfully create and delete reactions to thoughts and add a
 
 ## Walkthrough Video
 
-* A walkthrough video that demonstrates the functionality of the social media API must be submitted, and a link to the video should be included in your README file.
-
-### Bonus: +10 Points
-* Application deletes a user's associated thoughts when the user is deleted.
+https://user-images.githubusercontent.com/99295420/177010846-00e10d20-6a41-4685-b2a0-9b5bd4bc2a23.mp4
 
 ## Contribution
 Aubree Alexander
