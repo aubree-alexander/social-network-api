@@ -1,7 +1,6 @@
 const router = require('express').Router()
 
 const { 
-    //these will be created in user controller
     getAllThoughts,
     getThoughtById,
     addThought,

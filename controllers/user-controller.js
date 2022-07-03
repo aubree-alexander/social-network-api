@@ -1,12 +1,14 @@
 const { User } = require('../models')
 
 const userController = {
+    //get all existing users
     getAllUsers(req, res) {
         User.find().select('-__v')
         .then((userData) => {res.json(userData)})
         .catch((err) => {res.json(err)}) 
     },
 
+    //get single user by id
     getUserById(req, res) {
         User.findOne({ _id: req.params.userId })
           .select('-__v')
@@ -36,7 +38,7 @@ const userController = {
           });
       },
 
-      //update user 
+      //update existing user 
       updateUser(req, res) {
         User.findOneAndUpdate({_id: req.params.userId}, {$set: req.body}, {new: true, runValidators: true})
           .then(userData => res.status(200).json(userData))
@@ -46,7 +48,7 @@ const userController = {
           });
       },
 
-      //delete user
+      //delete existing user
       deleteUser(req, res) {
         User.findOneAndDelete({_id: req.params.userId})
           .then(userData => res.status(200).json(userData))
@@ -69,7 +71,6 @@ const userController = {
 
       //delete friend
       deleteFriend(req, res) {
-        //need to do UPDATE vs DELETE because otherwise you're implying you're deleting the user itself not the friend
         User.findOneAndUpdate({_id: req.params.userId}, {$pull: {friends: req.params.friendId}}, {new: true})
         .then(userData => res.status(200).json(userData))
               .catch((err) => {

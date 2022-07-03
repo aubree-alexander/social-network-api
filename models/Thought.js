@@ -3,9 +3,8 @@ const { Schema, model, Types } = require('mongoose');
 
 const reactionSchema = new Schema(
     {
-        reationId: {
+        reactionId: {
             type: Schema.Types.ObjectId,
-            //mongoose equivalent of auto increment
             default: () => new Types.ObjectId()
         }, 
         reactionBody: {
@@ -41,7 +40,7 @@ const thoughtSchema = new Schema(
         createdAt: {
             type: Date,
             default: Date.now,
-            //set getter (like a hook in sequelize) to grab date formatter which imports into this.
+            //set getter to grab date formatter which imports into this.
             get: timestamp => formatDate(timestamp)
         },
         username: {
@@ -56,7 +55,7 @@ const thoughtSchema = new Schema(
     {
         toJSON: {
             virtuals: true,
-            //turns timestamp on! in our instance
+            //turn timestamp on
             getters: true
         }
     }

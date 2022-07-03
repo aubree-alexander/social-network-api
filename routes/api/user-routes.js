@@ -1,7 +1,6 @@
 const router = require('express').Router()
 
 const { 
-    //these will be created in user controller
     getAllUsers, 
     getUserById,
     createUser,
@@ -11,7 +10,6 @@ const {
     deleteFriend
 } = require('../../controllers/user-controller')
 
-// localhost:3001/api/users
 //assign methods that we'll use at /users
 router.route('/').get(getAllUsers).post(createUser)
 

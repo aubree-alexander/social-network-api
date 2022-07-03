@@ -1,4 +1,3 @@
-//string, unique, required, trimmed
 const { Schema, model } = require('mongoose');
 
 const UserSchema = new Schema(
@@ -21,15 +20,13 @@ const UserSchema = new Schema(
             ]
         },
         thoughts: [{
-            //gives it the _id
             type: Schema.Types.ObjectId,
-            //references thought model
+            //reference thought model
             ref: 'Thought'
         }],
         friends: [{
-            //gives it the _id
             type: Schema.Types.ObjectId,
-            //self referencing 
+            //self referencing the User model
             ref: 'User'
         }]
     },
@@ -40,14 +37,13 @@ const UserSchema = new Schema(
     }
 )
 
-//virtuals are like data columns that don't get stored in db. get stored in json data.
+//store friend count as a virtual 
 UserSchema.virtual('friendCount').get(function(){
     return this.friends.length
 })
 
 
-//casts userschema into an actual user model.
-//first is reference, second is the schema
+//cast userschema into an actual user model.
 const User = model('User', UserSchema)
 
 module.exports = User;
